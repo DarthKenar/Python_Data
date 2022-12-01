@@ -42,7 +42,7 @@ class Python_data():
                 self.exp_years += int(self.tec.pop(index))
                 self.counter += 1
                 
-
+            
             else:
 
                 if element not in self.unique_tecnologies:
@@ -51,7 +51,7 @@ class Python_data():
 
 
 
-            for element in self.unique_tecnologies:
+            if element in self.unique_tecnologies:
                 
                 
                 self.statistics.append(self.tec.count(element))
@@ -69,8 +69,8 @@ class Python_data():
     @staticmethod
     def show(unique_tecnologies: list, statistics: list):
 
-        df = pd.DataFrame(statistics, index=unique_tecnologies)
-        plt.barh(df)
+        #df = pd.DataFrame(statistics, index=unique_tecnologies)
+        plt.barh(statistics, unique_tecnologies)
         plt.show()
 
     def show_data(self):
@@ -89,9 +89,6 @@ class Python_data():
 
         Python_data.show(unique_tecnologies_relevant, statistics_relevant)
         
-
-
-
 #print(statistics)
 #print(len(unique_tecnologies))
 #print(len(statistics))
@@ -99,6 +96,7 @@ class Python_data():
 #df = pd.DataFrame(statistics, index=unique_tecnologies)
 
 info = Python_data()
+
 info.build_data()
 print(info)
 info.show_data_relevant(10)
