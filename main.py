@@ -42,7 +42,8 @@ class Python_data():
                 self.exp_years += int(self.tec.pop(index))
                 self.counter += 1
                 
-            
+            elif element == "":
+                self.tec.pop(index)
             else:
 
                 if element not in self.unique_tecnologies:
@@ -51,10 +52,10 @@ class Python_data():
 
 
 
-            if element in self.unique_tecnologies:
-                
-                
-                self.statistics.append(self.tec.count(element))
+        for element in self.unique_tecnologies:
+            
+            
+            self.statistics.append(self.tec.count(element))
 
     def __str__(self) -> str:
 
@@ -70,15 +71,15 @@ class Python_data():
     def show(unique_tecnologies: list, statistics: list):
 
         #df = pd.DataFrame(statistics, index=unique_tecnologies)
-        plt.barh(statistics, unique_tecnologies)
+        plt.bar(unique_tecnologies, statistics)
         plt.show()
 
     def show_data(self):
 
         Python_data.show(self.unique_tecnologies, self.statistics)
 
-    def show_data_relevant(self,value):
-
+    def show_data_relevant(self,value: int):
+        """(value = int) --> shows the relevant information according to 'value' which will be the stock quantity of the technologies"""
         unique_tecnologies_relevant = []
         statistics_relevant = []
 
@@ -99,5 +100,5 @@ info = Python_data()
 
 info.build_data()
 print(info)
-info.show_data_relevant(10)
-
+info.show_data_relevant(4)
+info.show_data_relevant()
